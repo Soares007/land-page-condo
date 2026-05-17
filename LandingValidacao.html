@@ -9,16 +9,16 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --blue:    #1B4FD8;
-    --blue-dk: #1039A8;
-    --blue-lt: #EEF3FF;
-    --blue-md: #4070F0;
-    --teal:    #0E9E7A;
-    --teal-lt: #E0F7F0;
-    --amber:   #E07B00;
-    --amber-lt:#FFF3E0;
-    --red:     #D92B3A;
-    --red-lt:  #FFF0F1;
+    --blue:    #126B83;
+    --blue-dk: #0E5669;
+    --blue-lt: #E6F7FB;
+    --blue-md: #2C819A;
+    --teal:    #2C819A;
+    --teal-lt: #E9F5F8;
+    --amber:   #4797B1;
+    --amber-lt:#EDF8FB;
+    --red:     #126B83;
+    --red-lt:  #E6F7FB;
     --gray-50: #F7F8FA;
     --gray-100:#EFF1F5;
     --gray-200:#DEE2EB;
@@ -28,8 +28,8 @@
     --white:   #FFFFFF;
     --radius:  12px;
     --radius-lg: 20px;
-    --shadow:  0 2px 24px rgba(27,79,216,.10);
-    --shadow-hover: 0 8px 40px rgba(27,79,216,.18);
+    --shadow:  0 2px 24px rgba(18,107,131,.10);
+    --shadow-hover: 0 8px 40px rgba(18,107,131,.18);
   }
 
   html { scroll-behavior: smooth; }
@@ -71,7 +71,7 @@
 
   /* ── HERO ── */
   .hero {
-    background: linear-gradient(135deg, #0F2463 0%, #1B4FD8 55%, #3060F0 100%);
+    background: linear-gradient(135deg, #126B83 0%, #2C819A 55%, #7CC4DF 100%);
     padding: 96px 5vw 80px;
     position: relative; overflow: hidden;
   }
@@ -87,7 +87,7 @@
   .hero-badge {
     display: inline-flex; align-items: center; gap: 6px;
     background: rgba(255,255,255,.15);
-    color: #CBE0FF; font-size: .8rem; font-weight: 500;
+    color: #DDF4FB; font-size: .8rem; font-weight: 500;
     padding: 5px 14px; border-radius: 20px;
     border: 1px solid rgba(255,255,255,.25);
     margin-bottom: 24px;
@@ -99,7 +99,7 @@
     font-weight: 800; line-height: 1.15;
     color: #fff; margin-bottom: 20px;
   }
-  .hero h1 em { font-style: normal; color: #7EB8FF; }
+  .hero h1 em { font-style: normal; color: #7CC4DF; }
   .hero p {
     font-size: 1.15rem; color: rgba(255,255,255,.8);
     max-width: 580px; margin: 0 auto 40px;
@@ -211,7 +211,7 @@
   .feature-card.teal::before { background: var(--teal); }
   .feature-card.amber::before { background: var(--amber); }
   .feature-card.red::before   { background: var(--red); }
-  .feature-card.purple::before { background: #7B55D4; }
+  .feature-card.purple::before { background: #126B83; }
   .feature-icon {
     width: 48px; height: 48px; border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
@@ -221,7 +221,7 @@
   .feature-card.teal .feature-icon { background: var(--teal-lt); color: var(--teal); }
   .feature-card.amber .feature-icon { background: var(--amber-lt); color: var(--amber); }
   .feature-card.red .feature-icon { background: var(--red-lt); color: var(--red); }
-  .feature-card.purple .feature-icon { background: #F0EBFF; color: #7B55D4; }
+  .feature-card.purple .feature-icon { background: #E6F7FB; color: #126B83; }
   .feature-card h3 {
     font-family: 'Sora', sans-serif; font-size: 1rem; font-weight: 700;
     color: var(--gray-800); margin-bottom: 10px;
@@ -236,7 +236,7 @@
   .feature-card.teal .tag { background: var(--teal-lt); color: var(--teal); }
   .feature-card.amber .tag { background: var(--amber-lt); color: var(--amber); }
   .feature-card.red .tag { background: var(--red-lt); color: var(--red); }
-  .feature-card.purple .tag { background: #F0EBFF; color: #7B55D4; }
+  .feature-card.purple .tag { background: #E6F7FB; color: #126B83; }
 
   /* ── HOW IT WORKS ── */
   .how { background: var(--gray-50); }
@@ -269,7 +269,7 @@
 
   /* ── FORM ── */
   .form-section {
-    background: linear-gradient(160deg, #0F2463 0%, #1B4FD8 100%);
+    background: linear-gradient(160deg, #126B83 0%, #2C819A 100%);
     position: relative; overflow: hidden;
   }
   .form-section::before {
@@ -281,7 +281,7 @@
     max-width: 680px; margin: 0 auto;
     position: relative; z-index: 1;
   }
-  .form-wrapper .section-tag { color: #7EB8FF; }
+  .form-wrapper .section-tag { color: #7CC4DF; }
   .form-wrapper .section-title { color: #fff; text-align: center; }
   .form-wrapper .section-sub { color: rgba(255,255,255,.75); text-align: center; margin: 0 auto 48px; }
 
@@ -306,7 +306,7 @@
   }
   input:focus, select:focus, textarea:focus {
     border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(27,79,216,.12);
+    box-shadow: 0 0 0 3px rgba(18,107,131,.12);
   }
   textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
   select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238E96A8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
@@ -436,22 +436,22 @@
   </div>
   <div class="problem-grid">
     <div class="problem-card">
-      <div class="problem-icon" style="background:#FFF0F1; color:#D92B3A;">💸</div>
+      <div class="problem-icon" style="background:#E6F7FB; color:#126B83;">💸</div>
       <h3>Cobranças manuais e inadimplência</h3>
       <p>Boletos gerados na mão, sem controle de multa e juros automáticos, aumentam a inadimplência.</p>
     </div>
     <div class="problem-card">
-      <div class="problem-icon" style="background:#FFF3E0; color:#E07B00;">📅</div>
+      <div class="problem-icon" style="background:#EDF8FB; color:#4797B1;">📅</div>
       <h3>Reservas sem controle</h3>
       <p>Agenda do salão de festas no grupo do WhatsApp gera conflitos, dupla marcação e discussões.</p>
     </div>
     <div class="problem-card">
-      <div class="problem-icon" style="background:#EEF3FF; color:#1B4FD8;">🚪</div>
+      <div class="problem-icon" style="background:#E6F7FB; color:#126B83;">🚪</div>
       <h3>Portaria sem rastreabilidade</h3>
       <p>Visitantes anotados em papel, sem registro digital, sem como auditar quem entrou e quando.</p>
     </div>
     <div class="problem-card">
-      <div class="problem-icon" style="background:#E0F7F0; color:#0E9E7A;">📋</div>
+      <div class="problem-icon" style="background:#E9F5F8; color:#2C819A;">📋</div>
       <h3>Reclamações sem retorno</h3>
       <p>Moradores reclamam pelo WhatsApp, o síndico se perde e ninguém sabe o que foi resolvido.</p>
     </div>
@@ -461,7 +461,7 @@
 <!-- FUNCIONALIDADES -->
 <section id="funcionalidades">
   <div class="section-head">
-    <span class="section-tag">O que o CondoSystem oferece</span>
+    <span class="section-tag">O que o Rezide oferece</span>
     <h2 class="section-title">Tudo que seu condomínio precisa em um só sistema</h2>
     <p class="section-sub">Pensado para síndicos que querem menos trabalho manual e mais transparência com os moradores.</p>
   </div>
@@ -587,11 +587,11 @@
     <div style="text-align:center; margin-bottom: 8px;">
       <span class="section-tag">Manifestação de interesse</span>
     </div>
-    <h2 class="section-title">Quer o CondoSystem no seu condomínio?</h2>
+    <h2 class="section-title">Quer o Rezide no seu condomínio?</h2>
     <p class="section-sub">Responda algumas perguntas rápidas e seja avisado assim que o sistema estiver disponível. Sua opinião vai ajudar a moldar o produto.</p>
 
     <div class="form-card">
-      <form id="validationForm">
+      <form id="validationForm" action="https://formspree.io/f/xkoewdja" method="POST">
 
         <span class="form-section-label">📍 Dados do condomínio</span>
 
@@ -776,13 +776,13 @@
           Quero ser avisado quando lançar
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
-        <p class="form-note">🔒 Seus dados ficam somente com a equipe do CondoSystem. Sem spam, prometemos.</p>
+        <p class="form-note">🔒 Seus dados ficam somente com a equipe do Rezide. Sem spam, prometemos.</p>
       </form>
 
       <div class="success-msg" id="successMsg">
         <div class="check">✅</div>
         <h3>Recebemos sua resposta!</h3>
-        <p>Muito obrigado pelo interesse. Você será um dos primeiros a testar o CondoSystem quando estiver disponível.<br><br>Em breve entraremos em contato pelo e-mail ou WhatsApp informado.</p>
+        <p>Muito obrigado pelo interesse. Você será um dos primeiros a testar o Rezide quando estiver disponível.<br><br>Em breve entraremos em contato pelo e-mail ou WhatsApp informado.</p>
       </div>
     </div>
   </div>
@@ -790,16 +790,34 @@
 
 <!-- FOOTER -->
 <footer>
-  <p><strong>CondoSystem</strong> &mdash; Sistema de Gestão de Condomínios &bull; Produto em fase de validação &bull; 2025</p>
+  <p><strong>Rezide</strong> &mdash; Sistema de Gestão de Condomínios &bull; Produto em fase de validação &bull; 2025</p>
   <p style="margin-top:6px;">As respostas coletadas neste formulário serão usadas exclusivamente para desenvolvimento do produto.</p>
 </footer>
 
 <script>
-  document.getElementById('validationForm').addEventListener('submit', function(e) {
+  document.getElementById('validationForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    this.style.display = 'none';
-    document.getElementById('successMsg').style.display = 'block';
-    window.scrollTo({ top: document.getElementById('formulario').offsetTop - 80, behavior: 'smooth' });
+    const form = this;
+    const btn = form.querySelector('.btn-submit');
+    const originalBtnHtml = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = 'Enviando…';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
+      if (!res.ok) throw new Error('submit failed');
+      form.style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+      window.scrollTo({ top: document.getElementById('formulario').offsetTop - 80, behavior: 'smooth' });
+    } catch {
+      alert('Não foi possível enviar. Verifique sua conexão e tente novamente.');
+      btn.disabled = false;
+      btn.innerHTML = originalBtnHtml;
+    }
   });
 
   document.querySelectorAll('.radio-item input').forEach(radio => {
