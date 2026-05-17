@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rezide — residir com inteligência</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue:    #1B4FD8;
+    --blue-dk: #1039A8;
+    --blue-lt: #EEF3FF;
+    --blue-md: #4070F0;
+    --teal:    #0E9E7A;
+    --teal-lt: #E0F7F0;
+    --amber:   #E07B00;
+    --amber-lt:#FFF3E0;
+    --red:     #D92B3A;
+    --red-lt:  #FFF0F1;
+    --gray-50: #F7F8FA;
+    --gray-100:#EFF1F5;
+    --gray-200:#DEE2EB;
+    --gray-400:#8E96A8;
+    --gray-600:#4E5668;
+    --gray-800:#1E2330;
+    --white:   #FFFFFF;
+    --radius:  12px;
+    --radius-lg: 20px;
+    --shadow:  0 2px 24px rgba(27,79,216,.10);
+    --shadow-hover: 0 8px 40px rgba(27,79,216,.18);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--gray-800);
+    background: var(--white);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 5vw;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.25rem; font-weight: 800;
+    color: var(--blue);
+    display: flex; align-items: center; gap: 8px;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gray-800); }
+  .nav-cta {
+    background: var(--blue); color: #fff;
+    padding: 8px 22px; border-radius: 8px;
+    font-family: 'Sora', sans-serif; font-size: .875rem; font-weight: 600;
+    text-decoration: none;
+    transition: background .2s, transform .15s;
+  }
+  .nav-cta:hover { background: var(--blue-dk); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #0F2463 0%, #1B4FD8 55%, #3060F0 100%);
+    padding: 96px 5vw 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-inner {
+    max-width: 760px; margin: 0 auto;
+    text-align: center; position: relative; z-index: 1;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,.15);
+    color: #CBE0FF; font-size: .8rem; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.25);
+    margin-bottom: 24px;
+    letter-spacing: .04em; text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 800; line-height: 1.15;
+    color: #fff; margin-bottom: 20px;
+  }
+  .hero h1 em { font-style: normal; color: #7EB8FF; }
+  .hero p {
+    font-size: 1.15rem; color: rgba(255,255,255,.8);
+    max-width: 580px; margin: 0 auto 40px;
+  }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: #fff; color: var(--blue);
+    padding: 14px 32px; border-radius: 10px;
+    font-family: 'Sora', sans-serif; font-size: .95rem; font-weight: 700;
+    text-decoration: none; display: inline-block;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 20px rgba(0,0,0,.2);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,.25); }
+  .btn-outline {
+    background: transparent; color: #fff;
+    padding: 14px 32px; border-radius: 10px;
+    font-family: 'Sora', sans-serif; font-size: .95rem; font-weight: 600;
+    text-decoration: none; display: inline-block;
+    border: 2px solid rgba(255,255,255,.5);
+    transition: background .2s, border-color .2s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.8); }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 28px 5vw;
+  }
+  .stats-grid {
+    max-width: 900px; margin: 0 auto;
+    display: flex; gap: 0; justify-content: space-around; flex-wrap: wrap;
+  }
+  .stat-item {
+    text-align: center; padding: 8px 24px;
+    border-right: 1px solid var(--gray-200);
+    flex: 1; min-width: 140px;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.75rem; font-weight: 800; color: var(--blue);
+    display: block;
+  }
+  .stat-label { font-size: .8rem; color: var(--gray-400); font-weight: 500; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 80px 5vw; }
+  .section-tag {
+    font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--blue);
+    margin-bottom: 10px; display: block;
+  }
+  .section-title {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800;
+    color: var(--gray-800); line-height: 1.2; margin-bottom: 14px;
+  }
+  .section-sub {
+    font-size: 1.05rem; color: var(--gray-600);
+    max-width: 560px; line-height: 1.7;
+  }
+  .section-head { text-align: center; margin-bottom: 56px; }
+  .section-head .section-sub { margin: 0 auto; }
+
+  /* ── PROBLEM ── */
+  .problem { background: var(--gray-50); }
+  .problem-grid {
+    max-width: 1000px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .problem-card {
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: var(--radius); padding: 24px;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .problem-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .problem-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 14px;
+  }
+  .problem-card h3 {
+    font-family: 'Sora', sans-serif; font-size: .95rem; font-weight: 700;
+    color: var(--gray-800); margin-bottom: 6px;
+  }
+  .problem-card p { font-size: .875rem; color: var(--gray-600); line-height: 1.6; }
+
+  /* ── FEATURES ── */
+  .features-grid {
+    max-width: 1050px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .feature-card {
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg); padding: 28px;
+    transition: transform .2s, box-shadow .2s;
+    position: relative; overflow: hidden;
+  }
+  .feature-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    background: var(--blue);
+  }
+  .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+  .feature-card.teal::before { background: var(--teal); }
+  .feature-card.amber::before { background: var(--amber); }
+  .feature-card.red::before   { background: var(--red); }
+  .feature-card.purple::before { background: #7B55D4; }
+  .feature-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 16px;
+    background: var(--blue-lt); color: var(--blue);
+  }
+  .feature-card.teal .feature-icon { background: var(--teal-lt); color: var(--teal); }
+  .feature-card.amber .feature-icon { background: var(--amber-lt); color: var(--amber); }
+  .feature-card.red .feature-icon { background: var(--red-lt); color: var(--red); }
+  .feature-card.purple .feature-icon { background: #F0EBFF; color: #7B55D4; }
+  .feature-card h3 {
+    font-family: 'Sora', sans-serif; font-size: 1rem; font-weight: 700;
+    color: var(--gray-800); margin-bottom: 10px;
+  }
+  .feature-card p { font-size: .875rem; color: var(--gray-600); line-height: 1.65; margin-bottom: 16px; }
+  .feature-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: .72rem; font-weight: 600; letter-spacing: .03em;
+    padding: 3px 10px; border-radius: 6px;
+    background: var(--blue-lt); color: var(--blue);
+  }
+  .feature-card.teal .tag { background: var(--teal-lt); color: var(--teal); }
+  .feature-card.amber .tag { background: var(--amber-lt); color: var(--amber); }
+  .feature-card.red .tag { background: var(--red-lt); color: var(--red); }
+  .feature-card.purple .tag { background: #F0EBFF; color: #7B55D4; }
+
+  /* ── HOW IT WORKS ── */
+  .how { background: var(--gray-50); }
+  .steps {
+    max-width: 700px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 0;
+    position: relative;
+  }
+  .steps::before {
+    content: ''; position: absolute;
+    left: 23px; top: 48px; bottom: 48px;
+    width: 2px; background: var(--gray-200);
+  }
+  .step { display: flex; gap: 20px; align-items: flex-start; padding: 20px 0; }
+  .step-num {
+    width: 48px; height: 48px; flex-shrink: 0;
+    background: var(--blue); color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Sora', sans-serif; font-size: 1rem; font-weight: 800;
+    position: relative; z-index: 1;
+    box-shadow: 0 0 0 4px var(--gray-50);
+  }
+  .step-body { padding-top: 10px; }
+  .step-body h4 {
+    font-family: 'Sora', sans-serif; font-size: .95rem; font-weight: 700;
+    color: var(--gray-800); margin-bottom: 4px;
+  }
+  .step-body p { font-size: .875rem; color: var(--gray-600); line-height: 1.6; }
+
+  /* ── FORM ── */
+  .form-section {
+    background: linear-gradient(160deg, #0F2463 0%, #1B4FD8 100%);
+    position: relative; overflow: hidden;
+  }
+  .form-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .form-wrapper {
+    max-width: 680px; margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+  .form-wrapper .section-tag { color: #7EB8FF; }
+  .form-wrapper .section-title { color: #fff; text-align: center; }
+  .form-wrapper .section-sub { color: rgba(255,255,255,.75); text-align: center; margin: 0 auto 48px; }
+
+  .form-card {
+    background: var(--white); border-radius: var(--radius-lg);
+    padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,.25);
+  }
+  .form-group { margin-bottom: 22px; }
+  label {
+    display: block; font-size: .875rem; font-weight: 600;
+    color: var(--gray-800); margin-bottom: 7px;
+  }
+  .required { color: var(--red); margin-left: 2px; }
+  input[type=text], input[type=email], input[type=tel], select, textarea {
+    width: 100%; padding: 11px 14px;
+    border: 1.5px solid var(--gray-200); border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: .9rem;
+    color: var(--gray-800); background: var(--white);
+    transition: border-color .2s, box-shadow .2s;
+    outline: none;
+    appearance: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(27,79,216,.12);
+  }
+  textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238E96A8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
+
+  .checkbox-group { display: flex; flex-direction: column; gap: 10px; }
+  .checkbox-item { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
+  .checkbox-item input[type=checkbox] { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; accent-color: var(--blue); cursor: pointer; }
+  .checkbox-item span { font-size: .875rem; color: var(--gray-700); line-height: 1.5; }
+
+  .radio-group { display: flex; flex-direction: column; gap: 10px; }
+  .radio-item { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 10px 14px; border: 1.5px solid var(--gray-200); border-radius: 8px; transition: border-color .2s, background .2s; }
+  .radio-item:hover { background: var(--blue-lt); border-color: var(--blue); }
+  .radio-item input[type=radio] { width: 16px; height: 16px; flex-shrink: 0; accent-color: var(--blue); cursor: pointer; }
+  .radio-item span { font-size: .875rem; color: var(--gray-800); font-weight: 500; }
+  .radio-item.selected { background: var(--blue-lt); border-color: var(--blue); }
+
+  .form-divider {
+    border: none; border-top: 1px solid var(--gray-200);
+    margin: 28px 0;
+  }
+  .form-section-label {
+    font-family: 'Sora', sans-serif; font-size: .8rem; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 20px; display: block;
+  }
+
+  .btn-submit {
+    width: 100%; padding: 15px;
+    background: var(--blue); color: #fff;
+    border: none; border-radius: 10px;
+    font-family: 'Sora', sans-serif; font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: background .2s, transform .15s;
+    margin-top: 8px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .btn-submit:hover { background: var(--blue-dk); transform: translateY(-1px); }
+  .btn-submit:active { transform: translateY(0); }
+  .btn-submit svg { width: 18px; height: 18px; }
+
+  .form-note {
+    text-align: center; font-size: .78rem; color: var(--gray-400);
+    margin-top: 14px; line-height: 1.5;
+  }
+
+  /* Success state */
+  .success-msg {
+    display: none; text-align: center; padding: 40px 20px;
+  }
+  .success-msg .check {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--teal-lt); color: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; margin: 0 auto 20px;
+  }
+  .success-msg h3 {
+    font-family: 'Sora', sans-serif; font-size: 1.3rem; font-weight: 800;
+    color: var(--gray-800); margin-bottom: 10px;
+  }
+  .success-msg p { font-size: .9rem; color: var(--gray-600); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--gray-800); color: rgba(255,255,255,.6);
+    text-align: center; padding: 28px 5vw;
+    font-size: .82rem;
+  }
+  footer strong { color: rgba(255,255,255,.9); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 64px 5vw 56px; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--gray-200); }
+    .stat-item:last-child { border-bottom: none; }
+    .form-card { padding: 24px; }
+    nav { padding: 0 4vw; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">🏢 <span>Rezide - </span>residir com inteligência</a>
+  <a class="nav-cta" href="#formulario">Quero ser avisado</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🚀 Em desenvolvimento — seja o primeiro a saber</div>
+    <h1>Gerir seu condomínio ficou <em>muito mais fácil</em></h1>
+    <p>Rezide é uma plataforma completa para síndicos e administradoras: cobranças automáticas, reservas, visitantes, ocorrências e muito mais em um só lugar.</p>
+    <div class="hero-btns">
+      <a href="#formulario" class="btn-primary">Tenho interesse — cadastrar</a>
+      <a href="#funcionalidades" class="btn-outline">Ver funcionalidades</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <span class="stat-num">+400mil</span>
+      <span class="stat-label">Condomínios no Brasil</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">72%</span>
+      <span class="stat-label">Usam planilha ou WhatsApp</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">R$8bi+</span>
+      <span class="stat-label">Em cobranças mensais</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">1 app</span>
+      <span class="stat-label">Para síndico, morador e porteiro</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEMA -->
+<section class="problem">
+  <div class="section-head">
+    <span class="section-tag">O problema atual</span>
+    <h2 class="section-title">Por que gerenciar condomínio ainda é uma dor de cabeça?</h2>
+    <p class="section-sub">A maioria dos síndicos ainda usa planilhas, grupos de WhatsApp e processos manuais que geram erros, conflitos e perda de tempo.</p>
+  </div>
+  <div class="problem-grid">
+    <div class="problem-card">
+      <div class="problem-icon" style="background:#FFF0F1; color:#D92B3A;">💸</div>
+      <h3>Cobranças manuais e inadimplência</h3>
+      <p>Boletos gerados na mão, sem controle de multa e juros automáticos, aumentam a inadimplência.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon" style="background:#FFF3E0; color:#E07B00;">📅</div>
+      <h3>Reservas sem controle</h3>
+      <p>Agenda do salão de festas no grupo do WhatsApp gera conflitos, dupla marcação e discussões.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon" style="background:#EEF3FF; color:#1B4FD8;">🚪</div>
+      <h3>Portaria sem rastreabilidade</h3>
+      <p>Visitantes anotados em papel, sem registro digital, sem como auditar quem entrou e quando.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon" style="background:#E0F7F0; color:#0E9E7A;">📋</div>
+      <h3>Reclamações sem retorno</h3>
+      <p>Moradores reclamam pelo WhatsApp, o síndico se perde e ninguém sabe o que foi resolvido.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FUNCIONALIDADES -->
+<section id="funcionalidades">
+  <div class="section-head">
+    <span class="section-tag">O que o CondoSystem oferece</span>
+    <h2 class="section-title">Tudo que seu condomínio precisa em um só sistema</h2>
+    <p class="section-sub">Pensado para síndicos que querem menos trabalho manual e mais transparência com os moradores.</p>
+  </div>
+  <div class="features-grid">
+
+    <div class="feature-card">
+      <div class="feature-icon">💰</div>
+      <h3>Cobranças Automáticas</h3>
+      <p>Geração automática da taxa mensal no início de cada mês, com boleto e Pix prontos para pagamento. Multa e juros calculados automaticamente após o vencimento.</p>
+      <div class="feature-tags">
+        <span class="tag">Boleto bancário</span>
+        <span class="tag">Pix QR Code</span>
+        <span class="tag">Juros automático</span>
+      </div>
+    </div>
+
+    <div class="feature-card teal">
+      <div class="feature-icon">📅</div>
+      <h3>Reserva de Áreas Comuns</h3>
+      <p>Agenda digital para salão de festas, churrasqueira, academia e quadra. O morador reserva pelo app em segundos, sem conflito de horário.</p>
+      <div class="feature-tags">
+        <span class="tag">Agenda online</span>
+        <span class="tag">Sem conflito</span>
+        <span class="tag">Lembretes</span>
+      </div>
+    </div>
+
+    <div class="feature-card amber">
+      <div class="feature-icon">🚪</div>
+      <h3>Controle de Visitantes</h3>
+      <p>Morador pré-autoriza visitantes pelo app. Na chegada, o porteiro confirma com um toque. Histórico de acessos sempre disponível.</p>
+      <div class="feature-tags">
+        <span class="tag">Pré-autorização</span>
+        <span class="tag">App do porteiro</span>
+        <span class="tag">Histórico</span>
+      </div>
+    </div>
+
+    <div class="feature-card red">
+      <div class="feature-icon">🎫</div>
+      <h3>Tickets e Ocorrências</h3>
+      <p>Canal oficial para reclamações e solicitações. Cada ticket tem prazo de resposta, histórico de atualizações e avaliação pelo morador.</p>
+      <div class="feature-tags">
+        <span class="tag">SLA definido</span>
+        <span class="tag">Escalonamento</span>
+        <span class="tag">Avaliação</span>
+      </div>
+    </div>
+
+    <div class="feature-card purple">
+      <div class="feature-icon">⚠️</div>
+      <h3>Multas e Infrações</h3>
+      <p>Emissão de multas com base legal, prazo de contestação para o morador, e lançamento automático na fatura em caso de confirmação.</p>
+      <div class="feature-tags">
+        <span class="tag">Base legal</span>
+        <span class="tag">Contestação</span>
+        <span class="tag">Automação</span>
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Dashboard e Relatórios</h3>
+      <p>Visão completa da situação financeira, inadimplência, tickets abertos e ocupação das áreas comuns para o síndico e administradora.</p>
+      <div class="feature-tags">
+        <span class="tag">Inadimplência</span>
+        <span class="tag">Financeiro</span>
+        <span class="tag">Ocorrências</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="how">
+  <div class="section-head">
+    <span class="section-tag">Como funciona</span>
+    <h2 class="section-title">Simples para todos — síndico, morador e porteiro</h2>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Condomínio cadastrado em minutos</h4>
+        <p>O síndico ou administradora cadastra o condomínio, as unidades e os moradores. Sistema já configurado e pronto para uso.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Moradores recebem convite pelo app</h4>
+        <p>Cada morador recebe um link de acesso no celular. Em poucos cliques já visualiza sua fatura, faz reservas e autoriza visitantes.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Cobranças geradas automaticamente todo mês</h4>
+        <p>No início de cada mês o sistema gera as faturas e notifica os moradores. Pagamento por Pix ou boleto, com baixa automática.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h4>Porteiro gerencia acessos pelo app dedicado</h4>
+        <p>Interface simplificada no tablet da portaria. Visitantes autorizados aparecem na tela; sem autorização, o sistema aciona o morador automaticamente.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h4>Síndico acompanha tudo no dashboard</h4>
+        <p>Visão em tempo real de inadimplência, tickets abertos, reservas do dia e ocorrências em andamento — sem precisar ligar para ninguém.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULÁRIO DE VALIDAÇÃO -->
+<section class="form-section" id="formulario">
+  <div class="form-wrapper">
+    <div style="text-align:center; margin-bottom: 8px;">
+      <span class="section-tag">Manifestação de interesse</span>
+    </div>
+    <h2 class="section-title">Quer o CondoSystem no seu condomínio?</h2>
+    <p class="section-sub">Responda algumas perguntas rápidas e seja avisado assim que o sistema estiver disponível. Sua opinião vai ajudar a moldar o produto.</p>
+
+    <div class="form-card">
+      <form id="validationForm">
+
+        <span class="form-section-label">📍 Dados do condomínio</span>
+
+        <div class="form-group">
+          <label>Nome do condomínio <span class="required">*</span></label>
+          <input type="text" name="condominio" placeholder="Ex: Residencial das Flores" required>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div class="form-group">
+            <label>Cidade <span class="required">*</span></label>
+            <input type="text" name="cidade" placeholder="Ex: Campinas" required>
+          </div>
+          <div class="form-group">
+            <label>Estado</label>
+            <select name="estado">
+              <option value="">Selecione</option>
+              <option>SP</option><option>RJ</option><option>MG</option><option>RS</option>
+              <option>PR</option><option>SC</option><option>BA</option><option>GO</option>
+              <option>DF</option><option>PE</option><option>CE</option><option>Outro</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Quantas unidades o condomínio tem? <span class="required">*</span></label>
+          <select name="unidades" required>
+            <option value="">Selecione a faixa</option>
+            <option>Até 20 unidades</option>
+            <option>21 a 50 unidades</option>
+            <option>51 a 100 unidades</option>
+            <option>101 a 200 unidades</option>
+            <option>Mais de 200 unidades</option>
+          </select>
+        </div>
+
+        <hr class="form-divider">
+        <span class="form-section-label">🔧 Uso atual</span>
+
+        <div class="form-group">
+          <label>Como o condomínio gerencia as cobranças hoje?</label>
+          <select name="gestao_atual">
+            <option value="">Selecione</option>
+            <option>Planilha Excel / Google Sheets</option>
+            <option>Sistema próprio / terceirizado</option>
+            <option>Administradora faz tudo</option>
+            <option>WhatsApp + planilha</option>
+            <option>Sem processo definido</option>
+          </select>
+        </div>
+
+        <hr class="form-divider">
+        <span class="form-section-label">⭐ Funcionalidades mais importantes</span>
+
+        <div class="form-group">
+          <label>Quais funcionalidades seriam mais úteis para você? <span class="required">*</span> <br><small style="color:#8E96A8; font-weight:400;">(selecione todas que aplicam)</small></label>
+          <div class="checkbox-group" style="margin-top:8px;">
+            <label class="checkbox-item">
+              <input type="checkbox" name="func" value="cobrancas"> <span>💰 Cobranças e boletos automáticos</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" name="func" value="reservas"> <span>📅 Reserva de salão de festas e áreas comuns</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" name="func" value="visitantes"> <span>🚪 Controle de visitantes na portaria</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" name="func" value="tickets"> <span>🎫 Tickets e reclamações dos moradores</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" name="func" value="multas"> <span>⚠️ Emissão e controle de multas</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" name="func" value="dashboard"> <span>📊 Dashboard e relatórios financeiros</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" name="func" value="comunicados"> <span>📢 Comunicados e mural digital</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top:22px;">
+          <label>Como funciona a saída de visitantes no seu condomínio hoje?</label>
+          <select name="saida_visitante">
+            <option value="">Selecione</option>
+            <option>O visitante passa pela portaria e o porteiro anota manualmente</option>
+            <option>Não há controle — a saída não é registrada</option>
+            <option>Temos catraca ou cancela que registra automaticamente</option>
+            <option>O próprio morador avisa quando o visitante sai</option>
+            <option>Outro processo</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Como preferiria que o sistema registrasse a saída de visitantes?</label>
+          <div class="radio-group">
+            <label class="radio-item">
+              <input type="radio" name="saida_pref" value="porteiro"> <span>Porteiro registra na saída pelo app — simples e rápido</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="saida_pref" value="morador"> <span>Morador encerra a visita pelo próprio app</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="saida_pref" value="automatico"> <span>Saída automática após X horas sem registro</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="saida_pref" value="indiferente"> <span>Indiferente, desde que fique registrado</span>
+            </label>
+          </div>
+        </div>
+
+        <hr class="form-divider">
+        <span class="form-section-label">💲 Precificação</span>
+
+        <div class="form-group">
+          <label>Qual modelo de pagamento prefere? <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-item">
+              <input type="radio" name="modelo" value="mensal" required> <span>Mensal — pago todo mês, cancela quando quiser</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="modelo" value="anual"> <span>Anual — pago uma vez por ano com desconto</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="modelo" value="indiferente"> <span>Indiferente, depende do preço</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Quanto o condomínio pagaria por um sistema completo como este? <span class="required">*</span></label>
+          <select name="preco" required>
+            <option value="">Selecione o valor mensal</option>
+            <option>Até R$ 50/mês</option>
+            <option>R$ 51 a R$ 100/mês</option>
+            <option>R$ 101 a R$ 200/mês</option>
+            <option>R$ 201 a R$ 350/mês</option>
+            <option>Acima de R$ 350/mês</option>
+            <option>Dependeria das funcionalidades</option>
+          </select>
+        </div>
+
+        <hr class="form-divider">
+        <span class="form-section-label">💬 Mais sobre você</span>
+
+        <div class="form-group">
+          <label>Você é... <span class="required">*</span></label>
+          <select name="perfil" required>
+            <option value="">Selecione</option>
+            <option>Síndico(a) morador</option>
+            <option>Síndico(a) profissional</option>
+            <option>Administradora de condomínios</option>
+            <option>Subsíndico(a) / conselheiro</option>
+            <option>Morador(a) interessado</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Tem alguma funcionalidade que sente falta e não mencionamos?</label>
+          <textarea name="sugestao" placeholder="Escreva aqui sua sugestão ou necessidade específica..."></textarea>
+        </div>
+
+        <hr class="form-divider">
+        <span class="form-section-label">📬 Seus contatos</span>
+
+        <div class="form-group">
+          <label>Seu nome <span class="required">*</span></label>
+          <input type="text" name="nome" placeholder="Nome completo" required>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div class="form-group">
+            <label>E-mail <span class="required">*</span></label>
+            <input type="email" name="email" placeholder="seu@email.com" required>
+          </div>
+          <div class="form-group">
+            <label>WhatsApp</label>
+            <input type="tel" name="whatsapp" placeholder="(11) 99999-9999">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          Quero ser avisado quando lançar
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <p class="form-note">🔒 Seus dados ficam somente com a equipe do CondoSystem. Sem spam, prometemos.</p>
+      </form>
+
+      <div class="success-msg" id="successMsg">
+        <div class="check">✅</div>
+        <h3>Recebemos sua resposta!</h3>
+        <p>Muito obrigado pelo interesse. Você será um dos primeiros a testar o CondoSystem quando estiver disponível.<br><br>Em breve entraremos em contato pelo e-mail ou WhatsApp informado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>CondoSystem</strong> &mdash; Sistema de Gestão de Condomínios &bull; Produto em fase de validação &bull; 2025</p>
+  <p style="margin-top:6px;">As respostas coletadas neste formulário serão usadas exclusivamente para desenvolvimento do produto.</p>
+</footer>
+
+<script>
+  document.getElementById('validationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+    window.scrollTo({ top: document.getElementById('formulario').offsetTop - 80, behavior: 'smooth' });
+  });
+
+  document.querySelectorAll('.radio-item input').forEach(radio => {
+    radio.addEventListener('change', function() {
+      document.querySelectorAll('.radio-item').forEach(item => item.classList.remove('selected'));
+      this.closest('.radio-item').classList.add('selected');
+    });
+  });
+</script>
+</body>
+</html>
